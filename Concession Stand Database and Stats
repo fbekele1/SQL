@@ -1,0 +1,38 @@
+--Create a concession stand database.
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, kind TEXT, popularity INTEGER, price INTEGER);
+
+INSERT INTO store VALUES (1,"pizza slice", "hot", 4, 3.5);
+INSERT INTO store VALUES (2, "gatorade", "beverage", 8, 1.5);
+INSERT INTO store VALUES (3, "chips", "side", 2, 0.75);
+INSERT INTO store VALUES (4, "water", "beverage", 1, 1.5);
+INSERT INTO store VALUES (5, "hot dog", "hot", 10, 2.5);
+INSERT INTO store VALUES (6, "nachos", "hot", 6, 5.25);
+INSERT INTO store VALUES (7, "slushee", "beverage", 3, 2.5);
+INSERT INTO store VALUES (8, "donut", "side", 18, 2);
+INSERT INTO store VALUES (9, "pretzel", "hot", 5, 2.5);
+INSERT INTO store VALUES (10, "granola bar", "side", 20, 0.5);
+INSERT INTO store VALUES (11, "hamburger", "hot", 12, 4.25);
+INSERT INTO store VALUES (12, "corn dog", "hot", 14, 2.5);
+INSERT INTO store VALUES (13, "candy bar", "side", 9, 1.5);
+INSERT INTO store VALUES (14, "iced tea", "beverage", 13, 1.5);
+INSERT INTO store VALUES (15, "cotton candy", "side", 7, 3.25);
+
+--Display the database ordered by price.
+SELECT * FROM store
+ORDER BY price;
+
+--What is the max and min price of each kind of item?
+SELECT MAX (price), item, kind, popularity 
+FROM store 
+GROUP BY kind;
+
+SELECT MIN (price), item, kind, popularity 
+FROM store 
+GROUP BY kind;
+
+--What are the top 5 popular items at the concession stand?
+SELECT item, price, popularity 
+FROM store 
+ORDER BY popularity ASC 
+LIMIT 5;
