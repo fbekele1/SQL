@@ -1,4 +1,4 @@
-/* In this SQL, I'm creating a database with multiple tables in it about female authors of classics. Then, I join the tables to make readable lists about the authors. */
+/* In this SQL, I'm creating a database with multiple tables in it about female authors of classics. Then, I'm joining the tables to make readable lists. */
 
 
 CREATE TABLE authors 
