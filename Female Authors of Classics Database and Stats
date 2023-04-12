@@ -1,0 +1,83 @@
+/* In this SQL, I'm creating a database with multiple tables in it about female authors of classics. Then, I join the tables to make readable lists about the authors. */
+
+
+CREATE TABLE authors 
+(id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    nationality TEXT);
+    
+INSERT INTO authors (name, nationality) VALUES ("Jane Austen", "English");
+INSERT INTO authors (name, nationality) VALUES ("Louisa May Alcott", "American");
+INSERT INTO authors (name, nationality) VALUES ("Grace Livingston Hill", "American");
+INSERT INTO authors (name, nationality) VALUES ("Elizabeth Gaskell", "English");
+INSERT INTO authors (name, nationality) VALUES ("Charlotte Bronte", "English");
+INSERT INTO authors (name, nationality) VALUES ("L.M. Montogomery", "Canadian");
+INSERT INTO authors (name, nationality) VALUES ("Laura Ingalls Wilder", "American");
+INSERT INTO authors (name, nationality) VALUES ("Harriet Beecher Stowe", "American");
+INSERT INTO authors (name, nationality) VALUES ("George Eliot", "English");
+INSERT INTO authors (name, nationality) VALUES ("Harriet Jacobs", "American");
+INSERT INTO authors (name, nationality) VALUES ("Mary Shelley", "English");
+INSERT INTO authors (name, nationality) VALUES ("Emily Bronte", "English");
+INSERT INTO authors (name, nationality) VALUES ("Agatha Christie", "English");
+INSERT INTO authors (name, nationality) VALUES ("Edith Wharton", "American");
+INSERT INTO authors (name, nationality) VALUES ("Elizabeth Barrett Browning", "English");
+
+
+CREATE TABLE bestsellingbook 
+(id INTEGER PRIMARY KEY AUTOINCREMENT, authors_id INTEGER,
+    title TEXT,
+    publicationyear INTEGER);
+    
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (1, "Pride and Prejudice", "1813");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (2, "Little Women", "1868");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (3, "Marcia Schuyler", "1908");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (4, "Cranford", "1853");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (5, "Jane Eyre", "1847");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (6, "Anne of Green Gables", "1908");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (7, "Little House on the Prairie", "1935");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (8, "Uncle Tom’s Cabin", "1852");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (9, "Middlemarch", "1871");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (10, "Incidents in the Life of a Slave Girl", "1861");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (11, "Frankenstein", "1818");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (12, "Wuthering Heights", "1847");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (13, "And Then There Were None", "1939");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (14, "The Age of Innocence", "1921");
+INSERT INTO bestsellingbook (authors_id, title, publicationyear) VALUES (15, "Poems", "1844");
+
+
+CREATE TABLE friends
+(id INTEGER PRIMARY KEY AUTOINCREMENT, author1_id INTEGER, author2_id INTEGER);
+
+INSERT INTO friends (author1_id, author2_id) 
+   VALUES (4,5);
+INSERT INTO friends (author1_id, author2_id) 
+   VALUES (8,15);
+
+
+/* Display the title of each book in chronological order alongside their publication date */
+
+SELECT title, publicationyear 
+FROM bestsellingbook
+ORDER BY bestsellingbook.publicationyear ASC;
+
+
+ /* Display each author's name next to their best selling book. */  
+
+SELECT authors.name as "author's name", bestsellingbook.title FROM authors
+JOIN bestsellingbook
+ON authors.id=bestsellingbook.authors_id;
+
+
+/* Display the title of each book alongside the nationality of the author. */  
+SELECT bestsellingbook.title, authors.nationality FROM bestsellingbook 
+JOIN authors
+ON bestsellingbook.authors_id=authors.id; 
+
+
+ /* Display the names of each pair of authors who were friends.*/  
+
+SELECT a.name as "friend 1", b.name as "friend 2" FROM friends
+JOIN authors a
+ON friends.author1_id=a.id
+JOIN authors b
+ON friends.author2_id=b.id;
