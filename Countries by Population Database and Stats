@@ -247,7 +247,7 @@ SELECT name, net_migrants FROM countries ORDER BY net_migrants ASC LIMIT 5;
 SELECT AVG(percent_one_year_change) FROM countries;
 
 
-/* How many countries were above and below the average one year percent change */
+/* How many countries were above and below the average one year percent change? */
 
 SELECT COUNT(*),
     CASE
