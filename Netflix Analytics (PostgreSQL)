@@ -32,4 +32,4 @@ FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
 WHERE type='Movie'
 ORDER BY release_year ASC LIMIT 1; 
 
-*First LIMIT 5 to eliminate possibility of multiple movies with the same year*
+*First used LIMIT 5 to eliminate possibility of multiple movies with the same year*
